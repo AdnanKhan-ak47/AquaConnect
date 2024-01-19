@@ -14,4 +14,7 @@ router.post('/getverifiedrequest', controller.getVerifiedRequest)
 
 router.post('/getrequestforuser', controller.getRequestforUser)
 
+router.put('/assignngo', controller.AssignNgo)
+
+
 export default router

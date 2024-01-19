@@ -54,7 +54,7 @@ export const createRequests = async (req, res) => {
       .insert({ username: username, n_people: n_people, longitude: longitude, latitude: latitude, location: location, user_id: user_id })
       .returning('*')
     console.log(requests)
-    res.status(201).json({status: 'success'})
+    res.status(201).json({ status: 'success' })
   } catch (error) {
     console.error('Registration error:', error)
     res.status(500).json({ error: 'Server error' })
@@ -96,7 +96,7 @@ export const updateRequestStatus = async (req, res) => {
     const statuses = [
       'rejected',
       'pending',
-      'verifying',
+      'verified',
       'in_process',
       'resolved',
     ]
@@ -141,6 +141,26 @@ export const getVerifiedRequest = async (req, res) => {
     res.status(200).json(requests);
   } catch (error) {
     res.status(500).json({ error: 'Server error' });
-    console.error('Login error:', error);
+    console.error('Server error:', error);
+  }
+}
+
+export const AssignNgo = async (req, res) => {
+  const { ngo_id, req_id } = req.body
+  console.log("ngo_id", ngo_id)
+  console.log("req_id", req_id)
+  console.log("bitch")
+  try {
+
+    const requests = await db('requests')
+      .where({ req_id: req_id })
+      .insert({ ngo_id: ngo_id })
+      .returning('*')
+
+    console.log(requests)
+    res.status(200).json(requests);
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+    console.error('Server error:', error);
   }
 }

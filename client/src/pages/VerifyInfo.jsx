@@ -14,13 +14,15 @@ function VerifyInfo() {
 
     const [groundWaterPresent, setGroundWaterPresent] = useState({ Yes: false, No: true })
 
+    const [ngoSelect, setNgoSelect] = useState('')
+
 
     const getNgos = async () => {
         const response = await fetch(`http://localhost:5000/api/ngo`).then(res => res.json())
 
-        console.log(response)
-        const ngoNames = response.map((ngo) => (ngo.username))
-        setNgos(ngoNames)
+        // console.log(response)
+        // const ngoNames = response.map((ngo) => (ngo.username))
+        setNgos(response)
     }
 
     useEffect(() => {
@@ -38,6 +40,15 @@ function VerifyInfo() {
         }).then(res => res.json());
 
         console.log(response)
+
+
+        const response2 =  await fetch(`http://localhost:5000/api/request/assignngo`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ngo_id: ngoSelect, req_id: id})
+        }).then(res => res.json());
+
+        console.log(response2)
     };
 
     const handleChange = (e) => {
@@ -52,6 +63,10 @@ function VerifyInfo() {
         }
         else if (e.target.name == 'Build') {
             setProjectType({ Contamination: false, Build: true })
+        }
+        else if(e.target.name == 'ngoSelect'){
+            console.log(e.target.value)
+            setNgoSelect(e.target.value)
         }
     }
 
@@ -129,11 +144,11 @@ function VerifyInfo() {
                 <br />
                 <label className="label">
                     NGO:
-                    <select className="select" >
+                    <select className="select" name='ngoSelect' value={ngoSelect} onChange={handleChange} >
                         <option value="">Select</option>
                         {ngos.map((ngo) => {
                             return (
-                                <option value={ngo} key={ngo}>{ngo}</option>
+                                <option value={ngo.ngo_id} key={ngo.ngo_id} >{ngo.username}</option>
                             )
                         })}
                     </select>
