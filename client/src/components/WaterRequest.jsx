@@ -6,6 +6,7 @@ const WaterRequest = (props) => {
   const rowClassName = props.campaign === 'held' ? 'table-row-green' : 'table-row-yellow';
 
 
+
   return (
     <tr className={rowClassName}>
       <td className='table-cell'>{props.location}</td>
@@ -14,6 +15,7 @@ const WaterRequest = (props) => {
       <td className='table-cell'>{props.status}</td>
       <td className='table-cell'>{props.campaign}</td>
       <td className='table-cell'><button onClick={props.onclick}>Campaigning done</button></td>
+      <td className='table-cell'><button onClick={props.onverify}>Start Progress</button></td>
     </tr>
   );
 }

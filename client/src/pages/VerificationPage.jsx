@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import WaterRequestVerify from '../components/WaterRequestVerify'
+import Navbar from '../components/Navbar'
 
 function VerificationPage() {
   const [verificationId, setVerificationId] = useState('abcd1234')
@@ -21,21 +22,24 @@ function VerificationPage() {
   }, [])
 
   return (
-    <div>
-      <h1>Verification Page</h1>
-      <p>Verification id: {verificationId}</p>
-      {/* need a similar table thing here */}
-      {waterRequests.map((req) => (
-        <WaterRequestVerify
-          location={req.location}
-          userCount={req.n_people}
-          username={req.username}
-          status={req.status}
-          id={req.req_id}
-          key={req.req_id}
-        />
-      ))}
-    </div>
+    <>
+      <Navbar />
+      <div>
+        <h1>Verification Page</h1>
+        <p>Verification id: {verificationId}</p>
+        {/* need a similar table thing here */}
+        {waterRequests.map((req) => (
+          <WaterRequestVerify
+            location={req.location}
+            userCount={req.n_people}
+            username={req.username}
+            status={req.status}
+            id={req.req_id}
+            key={req.req_id}
+          />
+        ))}
+      </div>
+    </>
   )
 }
 

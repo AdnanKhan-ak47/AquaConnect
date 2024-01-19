@@ -25,7 +25,7 @@ const dropAndCreateTables = async () => {
       table.string('email').notNullable().unique()
       table.string('password').notNullable()
       table.string('phone').notNullable().unique()
-      table.string('address').notNullable().unique()
+      table.string('address').notNullable()
       table.string('ngo_type')
       table.string('member_name')
       table.timestamps(true, true)

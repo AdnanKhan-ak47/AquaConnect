@@ -5,7 +5,7 @@ nav {
   border-radius: 0px;
   padding: 2px 0px 10.5px 0;
   box-shadow: 0 25px 20px -20px rgba(0, 0, 0, 0.4);
-  height: 100px;
+  height: 80px;
   display: flex;
   justify-content: space-between;
 }
@@ -15,12 +15,24 @@ nav h2 {
   align-items: center;
 }
 
-nav div {
+nav .right {
   font-size: 28px;
   font-weight: 500;
   color: #159ad3;
   text-decoration: none;
-  padding-top: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.logout-btn {
+  margin-left: 20px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: 1px solid #159ad3;
+  color: #159ad3;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 /* nav ul li { */
